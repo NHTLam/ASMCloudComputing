@@ -55,7 +55,11 @@
                             <tr align="center">
                                 <td width = "20%"><img src="" width="100%" alt=""><img src="{{picture}}" alt="" width="150"></td>
                                 <td width = "10%">{{name}}</td>
-                                <td width = "10%">{{price}}</td>
+                                {{#if (CheckPrice price) }}
+                                    <td width = "10%" style="color: green;">{{price}}</td>
+                                {{else}}
+                                    <td width = "10%" style="color: blue;">{{price}}</td>
+                                {{/if}}                               
                                 <td width = "10%">{{supplier}}</td>
                                 <td>{{promotion}}</td>
                                 <td>{{description}}</td>

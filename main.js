@@ -1,10 +1,18 @@
 var express = require('express')
 const { insertProduct, SearchFunction, FindProduct, DeleteProduct, UpdateProduct, DisplayAll,SortByPriceASC } = require('./function')
 var app = express()
+const { handlebars } = require('hbs')
 
 app.set('view engine','hbs')
 app.use(express.urlencoded({extended:true}))
 app.use(express.static("public"))
+
+handlebars.registerHelper('CheckPrice',function(number){
+    if (number > 50000){
+        return false
+    }
+    return true
+})
 
 app.post('/new',async (req,res)=>{
     const name = req.body.txtName
@@ -13,6 +21,14 @@ app.post('/new',async (req,res)=>{
     const promotion = req.body.txtPromotion
     const description = req.body.txtDescription
     const picUrl = req.body.txtURL
+    if(name.trim().length==0){
+        res.render("newProduct",{'errorName':'Do not leave the name blank!'})
+        return
+    }
+    if(price < 1000){
+        res.render("newProduct",{'errorPrice':'This Price is too low'})
+        return
+    }
     const newProduct = {
         name :name,
         price: Number.parseFloat(price),
