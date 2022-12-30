@@ -1,7 +1,7 @@
 const { ObjectId } = require('bson')
 var mongoClient = require('mongodb').MongoClient
-var url = 'mongodb://0.0.0.0:27017'
-// var url = 'mongodb+srv://NHTLam:Lamdz1192003@cluster0.xgmcpig.mongodb.net/test'
+// var url = 'mongodb://0.0.0.0:27017'
+var url = 'mongodb+srv://NHTLam:Lamdz1192003@cluster0.xgmcpig.mongodb.net/test'
 
 async function SortByPriceASC() {
     let dbo = await ConnectDB()
